@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leonida Legend — GTA VI Trophy Guide &amp; Platinum Tracker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hero">
+  <p class="kicker">OFFLINE TROPHY GUIDE &amp; TRACKER · PLAYSTATION 5 · 55 TROPHIES</p>
+  <h1>Leonida Legend — GTA VI Trophy Guide &amp; Platinum Tracker</h1>
+  <p class="sub">Every official trophy, a roadmap to the platinum, watch-out flags built from the official descriptions, and a cited guide for each trophy. Progress saves in your browser — no account, no network.</p>
+  <div class="progress-wrap">
+    <p id="progress" class="progress-text">0 of 55 earned</p>
+    <div class="bar" role="progressbar" aria-label="Platinum progress"><div id="bar-fill"></div></div>
+    <p id="grade-counts" class="grade-counts"></p>
+  </div>
+</header>
+
+<section class="controls" aria-label="Tracker controls">
+  <label>Search <input id="search" type="search" placeholder="Search trophies…"></label>
+  <label>Kind
+    <select id="kind">
+      <option value="all">All kinds</option>
+      <option value="story">Story</option>
+      <option value="missable">Missable watch-outs</option>
+      <option value="collectibles">Collectibles</option>
+      <option value="activities">Activities</option>
+      <option value="world">World</option>
+      <option value="money">Money</option>
+      <option value="platinum">Platinum</option>
+    </select>
+  </label>
+  <label>Grade
+    <select id="grade">
+      <option value="all">All grades</option>
+      <option value="platinum">Platinum</option>
+      <option value="gold">Gold</option>
+      <option value="silver">Silver</option>
+      <option value="bronze">Bronze</option>
+    </select>
+  </label>
+  <label>Status
+    <select id="status">
+      <option value="all">All</option>
+      <option value="earned">Earned</option>
+      <option value="not">Not yet</option>
+    </select>
+  </label>
+  <label class="check"><input id="spoiler" type="checkbox"> Hide story spoilers</label>
+  <button id="export" type="button">Export progress</button>
+  <label class="import-btn">Import progress <input id="import" type="file" accept="application/json"></label>
+  <button id="reset" type="button">Reset</button>
+</section>
+
+<p id="showing" class="showing"></p>
+<main id="list" class="list"></main>
+
+<section id="roadmap" class="roadmap">
+  <h2>Roadmap to the Platinum — Vice Got a Price!</h2>
+  <p class="roadmap-intro">Built only from the official trophy descriptions and the counts they name. Do the stages in order and the platinum is a checklist, not a gamble. Watch-out flags are <strong>not</strong> confirmed missables — the game is not out; they are “do it when you see it” cautions read from the descriptions’ own wording.</p>
+  <div class="stages">
+    <article class="stage"><h3>Stage 1 — Story: chapters &amp; missions</h3><p>Play the story in order: Gone Fishing (opening) → Chapter 1 → Chapter 2 → Chapter 3 → Chapter 4 → the final mission (gold). Named mission trophies along the way: Breakfast Run, The Cartel Heist, Child’s Play, Headliners, VCIA Takedown and Operation Savage Glory. That is 12 story trophies plus the choices counter.</p></article>
+    <article class="stage"><h3>Stage 2 — Watch-outs before the final mission</h3><p>Before finishing the story, clear the 9 flagged watch-outs: the Ocean Beach cocktail “in the beginning”, choices made for better or worse, second-time’s-the-charm, the partnership moment, the strange encounter, Bret’s unique-animal hunt, the partner Wanted escape, the VCIA unscheduled departure and the showroom smash-out. Keep a manual save before the finale — general trophy-hunting practice.</p></article>
+    <article class="stage"><h3>Stage 3 — Collectibles &amp; counts</h3><p>The long numbers: 250 Stunts, gold in all 42 Shooting Range challenges, 3 Collectible Card sets, WAiNK It at 100 locations, meditate at 18 spots, discover 100 vehicles, register 10 vehicles to the Scooter Bros app, and explore all 52 areas of Leonida. Sweep region by region.</p></article>
+    <article class="stage"><h3>Stage 4 — Activities &amp; races</h3><p>Try all 9 activity types once, win a Top Fun Drone Race at all 14 locations, win 20 different races, beat Cal at fishing, finish an arcade game, complete 50 Challenges, bowl at Kolt &amp; Associates’, and finish all 8 stranger strands — Andy, Kenton, Billy, Randy and Tyrone’s final missions included.</p></article>
+    <article class="stage"><h3>Stage 5 — World feats &amp; money</h3><p>Free-roam feats: rob 5 Bank Vaults, an armored truck, a jewelry store unseen, 3 shops back-to-back with your partner, and an illegal operation of each of the 9 gangs; 5 takedowns in one Combat Focus and the Rhino tank. Money: launder $250,000 of Marked Bills, spend $100,000 across all shops, and purchase all 8 garage properties.</p></article>
+    <article class="stage"><h3>Stage 6 — 100% → Platinum</h3><p>Attain 100% Completion (A Long Road, gold) once every group above is done — it is the umbrella over the whole list. When the other 54 are ticked, Vice Got a Price! (platinum) unlocks and you are a Leonida Legend.</p></article>
+  </div>
+</section>
+
+<footer>
+  <p>Sources for every guide are named beside each trophy. Trophy names, descriptions and grades are the official PlayStation 5 list as published by PlayStation and listed by <a href="https://www.exophase.com">Exophase</a> and <a href="https://psnprofiles.com">PSNProfiles</a>. All guide text was written for this entry; no guide text is copied. This is a fan-made tool with no Rockstar Games artwork or logos.</p>
+</footer>
+<script type="module" src="app.js"></script>
+</body>
+</html>
