@@ -39,8 +39,7 @@
    "missable": false,
    "sources": [
     "Official PlayStation 5 trophy list — name, description and grade as published by PlayStation and listed by Exophase",
-    "PSNProfiles — GTA VI trophy list (cross-check of names, grades and counts)",
-    "The count in the official description itself"
+    "PSNProfiles — GTA VI trophy list (cross-check of names, grades and counts)"
    ]
   },
   {
@@ -53,8 +52,7 @@
    "missable": false,
    "sources": [
     "Official PlayStation 5 trophy list — name, description and grade as published by PlayStation and listed by Exophase",
-    "PSNProfiles — GTA VI trophy list (cross-check of names, grades and counts)",
-    "The count in the official description itself"
+    "PSNProfiles — GTA VI trophy list (cross-check of names, grades and counts)"
    ]
   },
   {
@@ -67,8 +65,7 @@
    "missable": false,
    "sources": [
     "Official PlayStation 5 trophy list — name, description and grade as published by PlayStation and listed by Exophase",
-    "PSNProfiles — GTA VI trophy list (cross-check of names, grades and counts)",
-    "The count in the official description itself"
+    "PSNProfiles — GTA VI trophy list (cross-check of names, grades and counts)"
    ]
   },
   {
@@ -81,8 +78,7 @@
    "missable": false,
    "sources": [
     "Official PlayStation 5 trophy list — name, description and grade as published by PlayStation and listed by Exophase",
-    "PSNProfiles — GTA VI trophy list (cross-check of names, grades and counts)",
-    "The count in the official description itself"
+    "PSNProfiles — GTA VI trophy list (cross-check of names, grades and counts)"
    ]
   },
   {
@@ -209,7 +205,7 @@
    "name": "Master of None",
    "description": "Try each type of activity once.",
    "grade": "bronze",
-   "guide": "Try each type of activity once — the starter list records 9 activity types tracked for this one. Sample one of everything the map offers (a race, a range challenge, a fishing spot and so on) early, because discovering which activities you enjoy tells you where the longer grinds in this list will come from.",
+   "guide": "Try each type of activity once. Sample one of everything the map offers (a race, a range challenge, a fishing spot and so on) early, because discovering which activities you enjoy tells you where the longer grinds in this list will come from.",
    "kind": "activities",
    "missable": false,
    "sources": [
@@ -222,12 +218,13 @@
    "name": "The Shootist",
    "description": "Earn a gold medal in all Shooting Range challenges.",
    "grade": "silver",
-   "guide": "Earn a gold medal in all Shooting Range challenges — 42 challenges by the tracked count in the starter list. Learn one weapon class at a time, replay a challenge immediately while its target pattern is fresh, and only move on once the gold is banked; silver medals do not count toward the description's wording, so the tracker habit of marking only golds keeps you honest.",
+   "guide": "Earn a gold medal in all Shooting Range challenges — 42 challenges — the tracked count PlayStation records for this trophy, as listed with the official list by Exophase and PSNProfiles. Learn one weapon class at a time, replay a challenge immediately while its target pattern is fresh, and only move on once the gold is banked; silver medals do not count toward the description's wording, so the tracker habit of marking only golds keeps you honest.",
    "kind": "collectibles",
    "missable": false,
    "sources": [
     "Official PlayStation 5 trophy list — name, description and grade as published by PlayStation and listed by Exophase",
-    "PSNProfiles — GTA VI trophy list (cross-check of names, grades and counts)"
+    "PSNProfiles — GTA VI trophy list (cross-check of names, grades and counts)",
+    "Exophase and PSNProfiles — the tracked count PlayStation records for this trophy (42 Shooting Range challenges), listed with the official list"
    ]
   },
   {
@@ -235,7 +232,7 @@
    "name": "Top Fun",
    "description": "Win a Top Fun Drone Race at every location.",
    "grade": "bronze",
-   "guide": "Win a Top Fun Drone Race at every location — 14 locations by the tracked count. A win, not just a finish, is required at each one, so learn a course with a sighting lap first, then race it properly; clear locations region by region so no single forgotten course blocks the trophy at the end.",
+   "guide": "Win a Top Fun Drone Race at every location. A win, not just a finish, is required at each one, so learn a course with a sighting lap first, then race it properly; clear locations region by region so no single forgotten course blocks the trophy at the end.",
    "kind": "activities",
    "missable": false,
    "sources": [
@@ -367,7 +364,7 @@
    "name": "Positive Mental Attitude",
    "description": "Meditate at every spot across Leonida.",
    "grade": "bronze",
-   "guide": "Meditate at every spot across Leonida — 18 spots by the tracked count. Meditation spots are a find-them-all set, so clear them region by region whenever you are nearby for another trophy, and mark each region off in your notes; one missed spot means a full map sweep, which is exactly what steady tracking avoids.",
+   "guide": "Meditate at every spot across Leonida. Meditation spots are a find-them-all set, so clear them region by region whenever you are nearby for another trophy, and mark each region off in your notes; one missed spot means a full map sweep, which is exactly what steady tracking avoids.",
    "kind": "collectibles",
    "missable": false,
    "sources": [
@@ -383,7 +380,7 @@
    "guide": "Hunt a unique animal for Bret, as the official description puts it — a named stranger's one specific hunt, not general hunting. Take Bret's request when it appears, follow his strand to the hunt itself, and treat the unique target as a one-time encounter: keep a manual save before starting it, as general practice, so a failed hunt can be retried cleanly.",
    "kind": "activities",
    "missable": true,
-   "missableNote": "Watch-out flag — do it when you see it. Tied to Bret's unique-animal hunt: flagged from the official description's word 'unique' — flagged from the official description's wording, not confirmed missable.",
+   "missableNote": "Watch-out flag — do it when you see it. Tied to Bret's unique-animal hunt: the description's word 'unique' marks it as a one-time encounter — flagged from the official description's wording, not confirmed missable.",
    "sources": [
     "Official PlayStation 5 trophy list — name, description and grade as published by PlayStation and listed by Exophase",
     "PSNProfiles — GTA VI trophy list (cross-check of names, grades and counts)"
@@ -439,11 +436,10 @@
    "guide": "Lose a 4 star Wanted Level with your partner and escape the heat, in the official description's own terms. Build the wanted level deliberately with your partner present, then break line of sight and stay hidden until the stars clear — doing it together is the condition, so set it up in free roam with your partner beside you rather than hoping it happens by accident mid-mission.",
    "kind": "world",
    "missable": true,
-   "missableNote": "Watch-out flag — do it when you see it. Partner and Wanted feat that may belong to a story window: flagged from the official description's partner wording — flagged from the official description's wording, not confirmed missable.",
+   "missableNote": "Watch-out flag — do it when you see it. Partner and Wanted feat that may belong to a story window, because it must be done with your partner — flagged from the official description's wording, not confirmed missable.",
    "sources": [
     "Official PlayStation 5 trophy list — name, description and grade as published by PlayStation and listed by Exophase",
-    "PSNProfiles — GTA VI trophy list (cross-check of names, grades and counts)",
-    "The count in the official description itself"
+    "PSNProfiles — GTA VI trophy list (cross-check of names, grades and counts)"
    ]
   },
   {
@@ -560,7 +556,7 @@
    "name": "The Goodtime State",
    "description": "Explore all of Leonida.",
    "grade": "bronze",
-   "guide": "Explore all of Leonida — 52 areas by the tracked count. This is a coverage trophy: travel every region of the state, including the corners no mission visits, and let your other sweeps (cards, spots, stunts) do most of the revealing for you. Near the end, compare the in-game map against your travels area by area to find the last unvisited pockets.",
+   "guide": "Explore all of Leonida. This is a coverage trophy: travel every region of the state, including the corners no mission visits, and let your other sweeps (cards, spots, stunts) do most of the revealing for you. Near the end, compare the in-game map against your travels area by area to find the last unvisited pockets.",
    "kind": "collectibles",
    "missable": false,
    "sources": [
@@ -573,7 +569,7 @@
    "name": "Pest Control",
    "description": "Rob an Illegal Operation belonging to each gang.",
    "grade": "bronze",
-   "guide": "Rob an Illegal Operation belonging to each gang — 9 gangs by the tracked count. One robbery per gang is the wording, so variety matters more than volume: identify which gang runs an operation before you hit it, keep a list of gangs already covered, and do not waste effort re-robbing the same gang's sites.",
+   "guide": "Rob an Illegal Operation belonging to each gang. One robbery per gang is the wording, so variety matters more than volume: identify which gang runs an operation before you hit it, keep a list of gangs already covered, and do not waste effort re-robbing the same gang's sites.",
    "kind": "world",
    "missable": false,
    "sources": [
@@ -641,7 +637,7 @@
    "name": "Actions Speak Louder",
    "description": "Choices made (for better or worse).",
    "grade": "bronze",
-   "guide": "Choices made (for better or worse) — the tracked count in the starter list runs to 500 choices, so this is both a story trophy and a long counter. Make choices actively throughout the story instead of skipping or defaulting through them, and remember the description's own warning: they are made for better or worse, so there may be no undoing them — keep manual saves before big decisions, as general practice.",
+   "guide": "Choices made (for better or worse) — a story trophy tied to the choices you make as the story unfolds; the official wording gives it no count. Make choices actively throughout the story instead of skipping or defaulting through them, and remember the description's own warning: they are made for better or worse, so there may be no undoing them — keep manual saves before big decisions, as general practice.",
    "kind": "story",
    "missable": true,
    "missableNote": "Watch-out flag — do it when you see it. Choices made (for better or worse): choices may not be revisitable once made — flagged from the official description's wording, not confirmed missable.",
@@ -724,7 +720,7 @@
    "name": "Little Boxes",
    "description": "Purchase all garage properties.",
    "grade": "bronze",
-   "guide": "Purchase all garage properties — 8 garages by the tracked count. Save toward property as soon as income allows, buy garages as they become affordable rather than waiting for all eight at once, and remember this pairs with the spending trophy: every garage bought is also money spent across the game.",
+   "guide": "Purchase all garage properties, however many the game offers. Save toward property as soon as income allows, buy them as they become affordable rather than waiting until you can buy them all at once, and remember this pairs with the spending trophy: every garage bought is also money spent across the game.",
    "kind": "money",
    "missable": false,
    "sources": [

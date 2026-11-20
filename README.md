@@ -26,7 +26,7 @@ then open http://localhost:8080 (use `node serve.ts --port 8901` for another por
 
 ## Sources & credits
 
-Trophy names, descriptions and grades are the official PlayStation 5 list as published by PlayStation and listed by Exophase and PSNProfiles, cross-checked between the two. Counts beyond the descriptions (for example 42 Shooting Range challenges, 52 areas of Leonida) are the tracked counts from that same list. All guide text was written for this entry; no text is copied from any guide. General trophy-hunting advice (for example keeping a manual save before the final mission) is labelled as general practice where it appears. This is a fan-made tool: no Rockstar Games logos, artwork or game screenshots are used.
+Trophy names, descriptions and grades are the official PlayStation 5 list as published by PlayStation and listed by Exophase and PSNProfiles, cross-checked between the two. Every number in the guides comes from the official descriptions themselves, except 42 Shooting Range challenges, the tracked count listed with the official list by Exophase and PSNProfiles. All guide text was written for this entry; no text is copied from any guide. General trophy-hunting advice (for example keeping a manual save before the final mission) is labelled as general practice where it appears. This is a fan-made tool: no Rockstar Games logos, artwork or game screenshots are used.
 
 ---
 
