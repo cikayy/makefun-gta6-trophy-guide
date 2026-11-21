@@ -1,104 +1,92 @@
 // Leonida Legend — entrypoint.
 //
-// This script is the build step for the make.fun entry. It first sanity-
-// checks the two things a judge will look at hardest — the trophy data and
-// the screenshots — and only then hands the folder to the dossier builder
-// from the vendor module. If the data is short a trophy or a screenshot is
-// overweight, we want to find out here, not after submission.
+// Builds the submission dossier for the GTA VI trophy guide. The program
+// run by the grader may start this file from any working directory and
+// with the repository mounted read-only, so every path below is resolved
+// from the bot directory (or this file's own location) and the output
+// directory is resolved absolutely: nothing is ever read from, or written
+// to, a location derived from the process working directory.
 
 import { mkdir, readdir, readFile, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { buildDossier } from './vendor/makefun-frontend.ts';
 
-// Where the finished dossier lands. The kit sets MAKEFUN_OUTPUT_DIR when it
-// wants the output somewhere specific; locally we just use ./out.
-const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? 'out';
-const root = process.cwd();
+// Where the repository lives. The grader names it through
+// MAKEFUN_BOT_DIR; a plain local run falls back to the folder this
+// entrypoint sits in, which is the repository root either way.
+const root = process.env.MAKEFUN_BOT_DIR ?? path.dirname(fileURLToPath(import.meta.url));
 
-// The grades the official PS5 set uses. Anything outside this list in the
-// data file is a typo, and typos in trophy data are exactly what this
-// validation pass exists to catch.
-const GRADES = new Set(['platinum', 'gold', 'silver', 'bronze']);
-const SCREENSHOT_LIMIT = 262144; // 256 KiB, the per-image cap from the rules
+// Where the dossier goes. path.resolve() returns its second argument
+// unchanged when that argument is already absolute, so an absolute
+// MAKEFUN_OUTPUT_DIR (the grader's /output) is honored as-is and the
+// dossier can never land inside a read-only repository.
+const outDir = path.resolve(root, process.env.MAKEFUN_OUTPUT_DIR ?? 'out');
 
-interface Trophy {
-  id: number;
-  name: string;
-  description: string;
-  grade: string;
-  kind: string;
-  guide: string;
+// ---------------------------------------------------------------------------
+// Pre-flight validation: fail loudly here rather than ship a broken dossier.
+// ---------------------------------------------------------------------------
+
+const VALID_GRADES = new Set(['platinum', 'gold', 'silver', 'bronze']);
+
+const trophiesPath = path.join(root, 'app', 'data', 'trophies.json');
+const trophies = JSON.parse(await readFile(trophiesPath, 'utf8'));
+
+if (!Array.isArray(trophies) || trophies.length !== 55) {
+  throw new Error(`trophies.json must hold exactly 55 trophies, found ${trophies?.length}`);
 }
 
-async function loadTrophies(): Promise<Trophy[]> {
-  const raw = await readFile(path.join(root, 'app', 'data', 'trophies.json'), 'utf8');
-  const parsed: unknown = JSON.parse(raw);
-  if (!Array.isArray(parsed)) {
-    throw new Error('trophies.json must be a JSON array');
+const seenNames = new Set<string>();
+const gradeCounts = new Map<string, number>();
+for (const trophy of trophies) {
+  if (seenNames.has(trophy.name)) {
+    throw new Error(`duplicate trophy name: ${trophy.name}`);
   }
-  const trophies = parsed as Trophy[];
-
-  // The official set has exactly 55 trophies. A different length means the
-  // data drifted from the source list it was transcribed from.
-  if (trophies.length !== 55) {
-    throw new Error(`expected 55 trophies, found ${trophies.length}`);
+  seenNames.add(trophy.name);
+  if (!VALID_GRADES.has(trophy.grade)) {
+    throw new Error(`trophy "${trophy.name}" has an unknown grade: ${trophy.grade}`);
   }
-
-  const names = new Set<string>();
-  for (const t of trophies) {
-    if (names.has(t.name)) {
-      throw new Error(`duplicate trophy name: ${t.name}`);
-    }
-    names.add(t.name);
-    if (!GRADES.has(t.grade)) {
-      throw new Error(`trophy ${t.id} has unknown grade "${t.grade}"`);
-    }
-    if (typeof t.guide !== 'string' || t.guide.length === 0) {
-      throw new Error(`trophy ${t.id} (${t.name}) is missing its guide`);
-    }
+  if (typeof trophy.guide !== 'string' || trophy.guide.trim() === '') {
+    throw new Error(`trophy "${trophy.name}" is missing its guide`);
   }
-  return trophies;
+  gradeCounts.set(trophy.grade, (gradeCounts.get(trophy.grade) ?? 0) + 1);
 }
 
-async function checkScreenshots(): Promise<string[]> {
-  const dir = path.join(root, 'screenshots');
-  const files = (await readdir(dir)).filter((f) => /\.(jpe?g|png)$/i.test(f)).sort();
-  if (files.length !== 4) {
-    throw new Error(`expected exactly 4 screenshots, found ${files.length}`);
+const shotsDir = path.join(root, 'screenshots');
+const shotNames = (await readdir(shotsDir))
+  .filter((name) => /\.(jpe?g|png)$/i.test(name))
+  .sort();
+if (shotNames.length !== 4) {
+  throw new Error(`screenshots/ must hold exactly 4 images, found ${shotNames.length}`);
+}
+for (const name of shotNames) {
+  const { size } = await stat(path.join(shotsDir, name));
+  if (size > 262_144) {
+    throw new Error(`screenshot ${name} is ${size} bytes, over the 262144 byte cap`);
   }
-  for (const f of files) {
-    const info = await stat(path.join(dir, f));
-    if (info.size > SCREENSHOT_LIMIT) {
-      throw new Error(`screenshot ${f} is ${info.size} bytes, over the ${SCREENSHOT_LIMIT} cap`);
-    }
-  }
-  return files;
 }
 
-const trophies = await loadTrophies();
-const shots = await checkScreenshots();
+const gradeSummary = [...gradeCounts.entries()]
+  .map(([grade, count]) => `${count} ${grade}`)
+  .join(', ');
+console.log(
+  `Leonida Legend: 55 trophies (${gradeSummary}); screenshots: ${shotNames.join(', ')}`,
+);
 
-// A one-line inventory so the build log shows what went into the dossier.
-const perGrade = new Map<string, number>();
-for (const t of trophies) perGrade.set(t.grade, (perGrade.get(t.grade) ?? 0) + 1);
-const inventory = [...perGrade.entries()].map(([g, n]) => `${n} ${g}`).join(', ');
-console.log(`Leonida Legend: ${trophies.length} trophies (${inventory}); screenshots: ${shots.join(', ')}`);
+// ---------------------------------------------------------------------------
+// Build the dossier with the vendor frontend and write it to outDir only.
+// ---------------------------------------------------------------------------
 
-// The builder takes the project root (the folder holding app/ and
-// screenshots/) plus a flat config, and returns the dossier as bytes; writing
-// those bytes to the output directory is this script's job.
-const dossierBytes: Uint8Array = await buildDossier(root, {
+const dossierBytes = await buildDossier(root, {
   title: 'Leonida Legend',
   tagline:
     'The complete GTA VI trophy guide and platinum tracker: all 55 official PS5 trophies with a checklist that saves in your browser, a six-stage platinum roadmap, missable watch-outs and a guide for every trophy.',
   text_max_bytes: 1500 * 1024,
-  screenshot_max_bytes: 262144,
+  screenshot_max_bytes: 262_144,
   screenshots_max: 10,
 });
 
 await mkdir(outDir, { recursive: true });
-const dossierPath = path.join(root, outDir, 'dossier.json');
+const dossierPath = path.join(outDir, 'dossier.json');
 await writeFile(dossierPath, dossierBytes);
-
-// Report the dossier size so an overweight bundle is obvious in the log.
-console.log(`dossier written: ${dossierPath} (${dossierBytes.length} bytes)`);
+console.log(`Wrote ${dossierPath} (${dossierBytes.length} bytes)`);
