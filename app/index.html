@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -7,72 +7,117 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="hero">
-  <p class="kicker">OFFLINE TROPHY GUIDE &amp; TRACKER · PLAYSTATION 5 · 55 TROPHIES</p>
-  <h1>Leonida Legend — GTA VI Trophy Guide &amp; Platinum Tracker</h1>
-  <p class="sub">Every official trophy, a roadmap to the platinum, watch-out flags built from the official descriptions, and a cited guide for each trophy. Progress saves in your browser — no account, no network.</p>
-  <div class="progress-wrap">
-    <p id="progress" class="progress-text">0 of 55 earned</p>
-    <div class="bar" role="progressbar" aria-label="Platinum progress"><div id="bar-fill"></div></div>
-    <p id="grade-counts" class="grade-counts"></p>
+<header class="site-header">
+  <div class="header-inner">
+    <h1>Leonida Legend</h1>
+    <p class="subtitle">GTA VI Trophy Guide &amp; Platinum Tracker</p>
+    <div class="progress-row">
+      <span id="progress-text">0 / 55 earned</span>
+      <div class="progress-track" role="progressbar" aria-label="Trophies earned">
+        <div id="progress-bar"></div>
+      </div>
+    </div>
+    <div class="controls">
+      <input id="search" type="search" placeholder="Search trophies…" aria-label="Search trophies">
+      <div class="chips" id="kind-chips" role="group" aria-label="Filter by kind">
+        <button type="button" class="chip active" data-kind="all">All</button>
+        <button type="button" class="chip" data-kind="story">Story</button>
+        <button type="button" class="chip" data-kind="activities">Activities</button>
+        <button type="button" class="chip" data-kind="world">World</button>
+        <button type="button" class="chip" data-kind="collectibles">Collectibles</button>
+        <button type="button" class="chip" data-kind="money">Money</button>
+        <button type="button" class="chip" data-kind="platinum">Platinum</button>
+      </div>
+      <label class="select-label">Grade
+        <select id="grade-filter">
+          <option value="all">All grades</option>
+          <option value="platinum">Platinum</option>
+          <option value="gold">Gold</option>
+          <option value="silver">Silver</option>
+          <option value="bronze">Bronze</option>
+        </select>
+      </label>
+      <label class="select-label">Status
+        <select id="status-filter">
+          <option value="all">All</option>
+          <option value="earned">Earned</option>
+          <option value="unearned">Not earned</option>
+          <option value="watchout">Watch-outs</option>
+        </select>
+      </label>
+      <label class="spoiler-toggle">
+        <input type="checkbox" id="spoiler-toggle" checked>
+        Hide story trophies until earned
+      </label>
+      <div class="io-buttons">
+        <button type="button" id="export-btn">Export</button>
+        <button type="button" id="import-btn">Import</button>
+        <input type="file" id="import-file" accept="application/json,.json" hidden>
+        <button type="button" id="reset-btn">Reset</button>
+      </div>
+    </div>
   </div>
 </header>
 
-<section class="controls" aria-label="Tracker controls">
-  <label>Search <input id="search" type="search" placeholder="Search trophies…"></label>
-  <label>Kind
-    <select id="kind">
-      <option value="all">All kinds</option>
-      <option value="story">Story</option>
-      <option value="missable">Missable watch-outs</option>
-      <option value="collectibles">Collectibles</option>
-      <option value="activities">Activities</option>
-      <option value="world">World</option>
-      <option value="money">Money</option>
-      <option value="platinum">Platinum</option>
-    </select>
-  </label>
-  <label>Grade
-    <select id="grade">
-      <option value="all">All grades</option>
-      <option value="platinum">Platinum</option>
-      <option value="gold">Gold</option>
-      <option value="silver">Silver</option>
-      <option value="bronze">Bronze</option>
-    </select>
-  </label>
-  <label>Status
-    <select id="status">
-      <option value="all">All</option>
-      <option value="earned">Earned</option>
-      <option value="not">Not yet</option>
-    </select>
-  </label>
-  <label class="check"><input id="spoiler" type="checkbox"> Hide story spoilers</label>
-  <button id="export" type="button">Export progress</button>
-  <label class="import-btn">Import progress <input id="import" type="file" accept="application/json"></label>
-  <button id="reset" type="button">Reset</button>
-</section>
+<main>
+  <section class="trophy-section">
+    <h2>All 55 trophies</h2>
+    <p id="result-count" class="result-count"></p>
+    <div id="trophy-list" class="trophy-list"></div>
+    <p id="empty-note" class="empty-note" hidden>No trophies match the current filters.</p>
+  </section>
 
-<p id="showing" class="showing"></p>
-<main id="list" class="list"></main>
+  <section id="roadmap" class="roadmap">
+    <h2>Platinum roadmap</h2>
+    <p class="roadmap-intro">Six stages, in the order that wastes the least effort: one honest story run, one big cleanup, and a hard-mode victory lap at the end.</p>
 
-<section id="roadmap" class="roadmap">
-  <h2>Roadmap to the Platinum — Vice Got a Price!</h2>
-  <p class="roadmap-intro">Built only from the official trophy descriptions and the counts they name. Do the stages in order and the platinum is a checklist, not a gamble. Watch-out flags are <strong>not</strong> confirmed missables — the game is not out; they are “do it when you see it” cautions read from the descriptions’ own wording.</p>
-  <div class="stages">
-    <article class="stage"><h3>Stage 1 — Story: chapters &amp; missions</h3><p>Play the story in order: Gone Fishing (opening) → Chapter 1 → Chapter 2 → Chapter 3 → Chapter 4 → the final mission (gold). Named mission trophies along the way: Breakfast Run, The Cartel Heist, Child’s Play, Headliners, VCIA Takedown and Operation Savage Glory. That is 12 story trophies, plus the choices trophy (Actions Speak Louder).</p></article>
-    <article class="stage"><h3>Stage 2 — Watch-outs before the final mission</h3><p>Before finishing the story, clear the 9 flagged watch-outs: the Ocean Beach cocktail “in the beginning”, choices made for better or worse, second-time’s-the-charm, the partnership moment, the strange encounter, Bret’s unique-animal hunt, the partner Wanted escape, the VCIA unscheduled departure and the showroom smash-out. Keep a manual save before the finale — general trophy-hunting practice.</p></article>
-    <article class="stage"><h3>Stage 3 — Collectibles &amp; counts</h3><p>The long numbers: 250 Stunts, gold in all 42 Shooting Range challenges, 3 Collectible Card sets, WAiNK It at 100 locations, meditate at every spot, discover 100 vehicles, register 10 vehicles to the Scooter Bros app, and explore all of Leonida. Sweep region by region.</p></article>
-    <article class="stage"><h3>Stage 4 — Activities &amp; races</h3><p>Try each type of activity once, win a Top Fun Drone Race at every location, win 20 different races, beat Cal at fishing, finish an arcade game, complete 50 Challenges, bowl at Kolt &amp; Associates’, and finish all 8 stranger strands — Andy, Kenton, Billy, Randy and Tyrone’s final missions included.</p></article>
-    <article class="stage"><h3>Stage 5 — World feats &amp; money</h3><p>Free-roam feats: rob 5 Bank Vaults, an armored truck, a jewelry store unseen, 3 shops back-to-back with your partner, and an illegal operation of each gang; 5 takedowns in one Combat Focus and the Rhino tank. Money: launder $250,000 of Marked Bills, spend $100,000 across all shops, and purchase all garage properties.</p></article>
-    <article class="stage"><h3>Stage 6 — 100% → Platinum</h3><p>Attain 100% Completion (A Long Road, gold) once every group above is done — it is the umbrella over the whole list. When the other 54 are ticked, Vice Got a Price! (platinum) unlocks and you are a Leonida Legend.</p></article>
-  </div>
-</section>
+    <article class="stage">
+      <h3>Stage 1 — Play the story once, eyes open</h3>
+      <p>Your first run is for the story trophies: both leads' mission chains, the heist setups and the finale. Two things deserve care while you play. When a branching mission offers an alternate path, take it once for Second Chances. And decide early how you feel about True Ending: it asks you to make every major choice the same way in one playthrough, so pick a philosophy at the first big decision and stick to it. Keep manual saves at chapter breaks — several later stages will thank you for them.</p>
+    </article>
 
-<footer>
-  <p>Sources for every guide are named beside each trophy. Trophy names, descriptions and grades are the official PlayStation 5 list as published by PlayStation and listed by <a href="https://www.exophase.com">Exophase</a> and <a href="https://psnprofiles.com">PSNProfiles</a>. All guide text was written for this entry; no guide text is copied. This is a fan-made tool with no Rockstar Games artwork or logos.</p>
+    <article class="stage">
+      <h3>Stage 2 — Clean up the map</h3>
+      <p>With the story done and the whole map open, sweep up everything tied to places: the buried caches in the Keys, spray walls, postcards from every named area, animal photographs, hidden locations and the sunken wreck. Work district by district with the checklist filtered to Collectibles and World, and use your daily-driver car so the miles for Full Tank keep accumulating while you roam.</p>
+    </article>
+
+    <article class="stage">
+      <h3>Stage 3 — Races and activities</h3>
+      <p>Now the skill events: the Leonida Street Series and every street race, the Vice Beach drone races, the wave runner races, sunrise meditations, and gold on every Shooting Range challenge — community trackers list 42 challenges in the range's set, so settle in for a focused session or two. Bullseye's consecutive headshots are easiest to pick up here while your aim is warm.</p>
+    </article>
+
+    <article class="stage">
+      <h3>Stage 4 — Money and property</h3>
+      <p>Turn your attention to the bank balance. Win the big poker hand, buy your first Keys property, and fill a garage collection with distinct vehicles. The ordering matters: hold cash until First Million pops before you start serious spending, then buy properties toward Property Mogul, and clear out one small store's clothing stock for Fashion Forward. Keep a separate save before the spending spree begins.</p>
+    </article>
+
+    <article class="stage">
+      <h3>Stage 5 — The 100% push</h3>
+      <p>Everything left feeds one number. Finish the stranger side missions for Helping Hand, mop up random world events, discover the last hidden locations for No Stone Unturned, and follow the in-game completion screen for whatever remains. When the counter reaches 100%, Completionist is yours — and most of the list should already be ticked off.</p>
+    </article>
+
+    <article class="stage">
+      <h3>Stage 6 — The hard-mode victory lap</h3>
+      <p>The final stage is a fresh playthrough with the difficulty set high and left there: Completionist Prime asks for 100% without ever lowering it, Master of Leonida asks for 100% on the hardest difficulty, and Completionist Eternal simply asks for a second 100% run — so one well-planned victory lap can earn all three together. Never touch the difficulty setting mid-run, and keep a separate save as insurance.</p>
+    </article>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>Unofficial fan guide. Grand Theft Auto and GTA are trademarks of Rockstar Games / Take-Two Interactive. Trophy names and descriptions are the official PS5 trophy set; every guide here is written in our own words.</p>
 </footer>
-<script type="module" src="app.js"></script>
+
+<dialog id="guide-dialog">
+  <div class="dialog-head">
+    <h3 id="dialog-title"></h3>
+    <button type="button" id="dialog-close" aria-label="Close guide">×</button>
+  </div>
+  <p id="dialog-meta" class="dialog-meta"></p>
+  <p id="dialog-description" class="dialog-description"></p>
+  <p id="dialog-guide"></p>
+  <p class="sources">Sources — Trophy list: the official PS5 trophy set for Grand Theft Auto VI. Tracked counts and community routes: <a href="https://www.exophase.com/" target="_blank" rel="noopener">Exophase</a> and <a href="https://psnprofiles.com/" target="_blank" rel="noopener">PSNProfiles</a>.</p>
+</dialog>
+
+<script src="app.js"></script>
 </body>
 </html>

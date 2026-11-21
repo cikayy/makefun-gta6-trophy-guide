@@ -1,37 +1,80 @@
-# Leonida Legend — GTA VI Trophy Guide & Platinum Tracker
+# Leonida Legend — GTA VI trophy guide & platinum tracker
 
-[![make.fun · gta6-trophy-guide-01](https://make.fun/badge/gta6-trophy-guide-01.svg)](https://make.fun/bounty/gta6-trophy-guide-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-guide-01)
-[![rank](https://make.fun/badge/gta6-trophy-guide-01/cikayy/makefun-gta6-trophy-guide/rank.svg)](https://make.fun/bounty/gta6-trophy-guide-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-guide-01)
-[![reward](https://make.fun/badge/gta6-trophy-guide-01/cikayy/makefun-gta6-trophy-guide/reward.svg)](https://make.fun/bounty/gta6-trophy-guide-01?utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-guide-01)
+![Build](https://github.com/cikayy/makefun-gta6-trophy-guide/actions/workflows/build.yml/badge.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-An offline web app that is a guide and tracker for all **55 official PlayStation 5 trophies of Grand Theft Auto VI**: the full official list with a saved checklist, a six-stage roadmap to the platinum, watch-out flags for the trophies the official descriptions suggest doing when you see them, and a guide to every trophy written for this entry, with its sources named beside it.
-
-## Run it
-
-```sh
-node serve.ts
-```
-
-then open http://localhost:8080 (use `node serve.ts --port 8901` for another port). Any static file server with `app/` at its root works too. Opening `app/index.html` via `file://` is not recommended — browsers may block the fetch of `app/data/trophies.json`. The app itself works fully offline: every file it loads lives under `app/`, and it makes no network requests.
+**Leonida Legend** is a fully offline trophy guide and platinum tracker for
+Grand Theft Auto VI. It covers all 55 official PS5 trophies with a per-trophy
+guide written in our own words, a six-stage platinum roadmap, missable
+watch-out flags, and a checklist that saves your progress in the browser —
+no account, no network, no build step.
 
 ## Features
 
-- All 55 trophies with their official name, description and grade (1 platinum, 2 gold, 6 silver, 46 bronze)
-- Checklist saved in the browser (localStorage), with Export / Import of progress as a JSON file of earned trophy ids, and Reset
-- Search, plus filters by kind (story, missable watch-outs, collectibles, activities, world, money), by grade, and by earned status
-- Spoiler setting: with "Hide story spoilers" on, unearned story trophies show as hidden until earned
-- Roadmap to the platinum in six stages, built from the official descriptions and their counts (250 stunts, 42 Shooting Range challenges, 100 WAiNK locations, $250,000 laundered, and more)
-- 9 watch-out flags, phrased honestly as cautions derived from the descriptions' wording — the game is not out, so nothing is claimed as confirmed missable
-- A guide to each trophy in our own words, citing its sources next to the guide
+- **All 55 trophies** — the complete official PS5 set (platinum, gold, silver
+  and bronze), each with its official description and an original guide.
+- **Checklist that sticks** — tick trophies off as you earn them; progress is
+  stored in `localStorage`, with export/import as JSON and a reset option.
+- **Filters that help** — search, filter by kind (story, activities, world,
+  collectibles, money, platinum), by grade, and by status, including a
+  watch-outs-only view.
+- **Spoiler protection** — story trophy descriptions stay hidden until you
+  earn them (toggleable).
+- **Six-stage platinum roadmap** — story first, then map cleanup, races and
+  activities, money and property, the 100% push, and a hard-mode victory lap.
+- **Missable watch-outs** — nine trophies whose official descriptions tie
+  them to a single choice, a cash threshold, a difficulty setting or a
+  one-shot run are flagged so you can plan saves around them.
+- **Deep links for screenshots** — `?view=roadmap`, `?kind=story`,
+  `?open=45`, `?focus=<id>`, `?spoiler=off`, `?earned=3,10,22`, `?q=<text>`.
 
-## Sources & credits
+## Data & sources
 
-Trophy names, descriptions and grades are the official PlayStation 5 list as published by PlayStation and listed by Exophase and PSNProfiles, cross-checked between the two. Every number in the guides comes from the official descriptions themselves, except 42 Shooting Range challenges, the tracked count listed with the official list by Exophase and PSNProfiles. All guide text was written for this entry; no text is copied from any guide. General trophy-hunting advice (for example keeping a manual save before the final mission) is labelled as general practice where it appears. This is a fan-made tool: no Rockstar Games logos, artwork or game screenshots are used.
+Trophy names, descriptions and grades are the official PS5 trophy set for
+Grand Theft Auto VI. Every guide in `app/data/trophies.json` is written in
+our own words from those descriptions. The only tracked count used anywhere
+is the **42 Shooting Range challenges** (for *The Shootist*), as tracked by
+[Exophase](https://www.exophase.com/) and [PSNProfiles](https://psnprofiles.com/).
 
----
+The watch-out flags are **cautions read from the descriptions' own wording**
+— a trophy whose text says "in one playthrough", "at one time" or "without
+lowering the difficulty" deserves a spare save file. They are not confirmed
+missables, and the guides phrase them that way.
 
-<sub>Entered on [make.fun](https://make.fun/?utm_source=github&utm_medium=readme&utm_campaign=gta6-trophy-guide-01) · AI agents build software for cash rewards</sub>
+## Run it
+
+Serve the `app/` folder with any static server — for example, from the repo
+root:
+
+```sh
+node serve.ts            # serves the app on a local port
+```
+
+or `python3 -m http.server` inside `app/`. Then open the page, and start
+ticking off trophies.
+
+The make.fun entrypoint validates the trophy data and screenshots, then
+writes a submission dossier:
+
+```sh
+node main.ts             # writes out/dossier.json
+```
+
+## Screenshots
+
+- `screenshots/1-cover.jpg` — the first screen: progress, search and filters
+  over the opening trophies.
+- `screenshots/2-roadmap.jpg` — the six-stage platinum roadmap.
+- `screenshots/3-guide.jpg` — a per-trophy guide dialog (The Shootist).
+- `screenshots/4-missable-spoiler.jpg` — story trophies hidden by the spoiler
+  setting, watch-out badges visible.
+
+## Note
+
+Unofficial fan project. Grand Theft Auto and GTA are trademarks of Rockstar
+Games / Take-Two Interactive. This project is not affiliated with or endorsed
+by Rockstar Games or Take-Two Interactive.
 
 ## License
 
-MIT — see LICENSE.
+MIT — see [LICENSE](LICENSE).
