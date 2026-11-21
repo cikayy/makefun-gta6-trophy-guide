@@ -4,120 +4,187 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Leonida Legend — GTA VI Trophy Guide &amp; Platinum Tracker</title>
-<link rel="stylesheet" href="style.css">
+<style>
+  :root{
+    --bg:#0b0e1a; --panel:#12172b; --panel2:#171e36; --line:#2a3358;
+    --text:#e8ebf5; --muted:#9aa5c7; --gold:#f5b942;
+    --platinum:#7ee0d2; --silver:#c9d1d9; --bronze:#d08a4e;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.45}
+  .wrap{max-width:1180px;margin:0 auto;padding:20px 16px 48px}
+  header.hero{border:1px solid var(--line);border-radius:14px;
+    background:linear-gradient(135deg,#141a33,#0e1226 60%,#1a1430);
+    padding:26px 24px 20px;margin-bottom:18px}
+  header.hero h1{margin:0 0 4px;font-size:34px;letter-spacing:.5px;color:var(--gold)}
+  header.hero .sub{margin:0 0 16px;color:var(--muted);font-size:16px}
+  .progress-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  #progressText{font-weight:700;font-size:17px;white-space:nowrap}
+  .bar{flex:1;min-width:180px;height:14px;background:#0a0d1a;border:1px solid var(--line);
+    border-radius:8px;overflow:hidden}
+  #progressBar{height:100%;width:0%;background:linear-gradient(90deg,#b97f1e,var(--gold));
+    transition:width .25s ease}
+  section.controls{border:1px solid var(--line);border-radius:14px;background:var(--panel);
+    padding:16px;margin-bottom:18px}
+  .controls .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+  .controls .row:last-child{margin-bottom:0}
+  input[type="search"],select{background:var(--panel2);color:var(--text);
+    border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:14px}
+  input[type="search"]{flex:1;min-width:200px}
+  .chip{background:var(--panel2);color:var(--muted);border:1px solid var(--line);
+    border-radius:999px;padding:6px 14px;font-size:13px;cursor:pointer}
+  .chip.active{color:#14100a;background:var(--gold);border-color:var(--gold);font-weight:700}
+  button.action{background:var(--panel2);color:var(--text);border:1px solid var(--line);
+    border-radius:8px;padding:8px 14px;font-size:14px;cursor:pointer}
+  button.action:hover{border-color:var(--gold)}
+  label.spoiler{display:flex;gap:8px;align-items:center;font-size:14px;color:var(--muted);
+    cursor:pointer}
+  section#roadmap{border:1px solid var(--line);border-radius:14px;background:var(--panel);
+    padding:18px;margin-bottom:18px}
+  section#roadmap h2{margin:0 0 6px;color:var(--gold);font-size:22px}
+  section#roadmap .intro{color:var(--muted);margin:0 0 14px}
+  .stage{border:1px solid var(--line);border-radius:10px;background:var(--panel2);
+    padding:12px 14px;margin-bottom:10px}
+  .stage h3{margin:0 0 4px;font-size:16px}
+  .stage p{margin:0;color:var(--muted);font-size:14px}
+  #list{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px}
+  .card{border:1px solid var(--line);border-radius:12px;background:var(--panel);
+    padding:14px;display:flex;flex-direction:column;gap:8px}
+  .card.earned{border-color:var(--gold)}
+  .card.focused{outline:2px solid var(--gold)}
+  .card .top{display:flex;gap:10px;align-items:flex-start}
+  .card input[type="checkbox"]{width:19px;height:19px;margin-top:3px;accent-color:var(--gold);
+    cursor:pointer;flex:none}
+  .card h3{margin:0;font-size:16px;flex:1}
+  .badges{display:flex;gap:6px;flex-wrap:wrap}
+  .badge{font-size:11px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;
+    border-radius:999px;padding:2px 9px;border:1px solid var(--line);color:var(--muted)}
+  .badge.platinum{color:#0b0e1a;background:var(--platinum);border-color:var(--platinum)}
+  .badge.gold{color:#14100a;background:var(--gold);border-color:var(--gold)}
+  .badge.silver{color:#14100a;background:var(--silver);border-color:var(--silver)}
+  .badge.bronze{color:#14100a;background:var(--bronze);border-color:var(--bronze)}
+  .badge.watch{color:#14100a;background:var(--gold);border-color:var(--gold)}
+  .card .desc{margin:0;color:var(--muted);font-size:14px}
+  .card .hidden-note{margin:0;color:var(--muted);font-size:14px;font-style:italic}
+  .card .guide-btn{align-self:flex-start;background:transparent;color:var(--gold);
+    border:1px solid var(--gold);border-radius:8px;padding:6px 14px;font-size:13px;cursor:pointer}
+  #emptyMsg{color:var(--muted);text-align:center;padding:28px 0;display:none}
+  dialog{background:var(--panel);color:var(--text);border:1px solid var(--gold);
+    border-radius:14px;max-width:620px;width:92vw;padding:22px}
+  dialog::backdrop{background:rgba(3,5,12,.75)}
+  dialog h3{margin:0 0 8px;font-size:20px}
+  dialog .desc{color:var(--muted);font-style:italic}
+  dialog .sources{font-size:13px;color:var(--muted);border-top:1px solid var(--line);
+    padding-top:10px;margin-top:14px}
+  dialog a{color:var(--gold)}
+  dialog .close-btn{margin-top:14px;background:var(--gold);color:#14100a;border:none;
+    border-radius:8px;padding:8px 18px;font-weight:700;cursor:pointer}
+  footer{margin-top:26px;color:var(--muted);font-size:12.5px;text-align:center}
+</style>
 </head>
 <body>
-<header class="site-header">
-  <div class="header-inner">
+<div class="wrap">
+
+  <header class="hero">
     <h1>Leonida Legend</h1>
-    <p class="subtitle">GTA VI Trophy Guide &amp; Platinum Tracker</p>
+    <p class="sub">GTA VI Trophy Guide &amp; Platinum Tracker</p>
     <div class="progress-row">
-      <span id="progress-text">0 / 55 earned</span>
-      <div class="progress-track" role="progressbar" aria-label="Trophies earned">
-        <div id="progress-bar"></div>
-      </div>
+      <span id="progressText">0 / 55 earned</span>
+      <div class="bar"><div id="progressBar"></div></div>
     </div>
-    <div class="controls">
-      <input id="search" type="search" placeholder="Search trophies…" aria-label="Search trophies">
-      <div class="chips" id="kind-chips" role="group" aria-label="Filter by kind">
-        <button type="button" class="chip active" data-kind="all">All</button>
-        <button type="button" class="chip" data-kind="story">Story</button>
-        <button type="button" class="chip" data-kind="activities">Activities</button>
-        <button type="button" class="chip" data-kind="world">World</button>
-        <button type="button" class="chip" data-kind="collectibles">Collectibles</button>
-        <button type="button" class="chip" data-kind="money">Money</button>
-        <button type="button" class="chip" data-kind="platinum">Platinum</button>
-      </div>
-      <label class="select-label">Grade
-        <select id="grade-filter">
-          <option value="all">All grades</option>
-          <option value="platinum">Platinum</option>
-          <option value="gold">Gold</option>
-          <option value="silver">Silver</option>
-          <option value="bronze">Bronze</option>
-        </select>
-      </label>
-      <label class="select-label">Status
-        <select id="status-filter">
-          <option value="all">All</option>
-          <option value="earned">Earned</option>
-          <option value="unearned">Not earned</option>
-          <option value="watchout">Watch-outs</option>
-        </select>
-      </label>
-      <label class="spoiler-toggle">
-        <input type="checkbox" id="spoiler-toggle" checked>
-        Hide story trophies until earned
-      </label>
-      <div class="io-buttons">
-        <button type="button" id="export-btn">Export</button>
-        <button type="button" id="import-btn">Import</button>
-        <input type="file" id="import-file" accept="application/json,.json" hidden>
-        <button type="button" id="reset-btn">Reset</button>
-      </div>
-    </div>
-  </div>
-</header>
+  </header>
 
-<main>
-  <section class="trophy-section">
-    <h2>All 55 trophies</h2>
-    <p id="result-count" class="result-count"></p>
-    <div id="trophy-list" class="trophy-list"></div>
-    <p id="empty-note" class="empty-note" hidden>No trophies match the current filters.</p>
+  <section class="controls" aria-label="Filters and checklist tools">
+    <div class="row">
+      <input type="search" id="search" placeholder="Search trophies by name or description…" aria-label="Search trophies">
+      <select id="gradeFilter" aria-label="Filter by grade">
+        <option value="all">All grades</option>
+        <option value="platinum">Platinum</option>
+        <option value="gold">Gold</option>
+        <option value="silver">Silver</option>
+        <option value="bronze">Bronze</option>
+      </select>
+      <select id="statusFilter" aria-label="Filter by status">
+        <option value="all">All</option>
+        <option value="earned">Earned</option>
+        <option value="unearned">Not earned</option>
+        <option value="watch">Watch-outs</option>
+      </select>
+    </div>
+    <div class="row" id="kindChips" role="group" aria-label="Filter by kind">
+      <button class="chip active" data-kind="all">All</button>
+      <button class="chip" data-kind="story">Story</button>
+      <button class="chip" data-kind="activities">Activities</button>
+      <button class="chip" data-kind="world">World</button>
+      <button class="chip" data-kind="collectibles">Collectibles</button>
+      <button class="chip" data-kind="money">Money</button>
+      <button class="chip" data-kind="platinum">Platinum</button>
+    </div>
+    <div class="row">
+      <label class="spoiler"><input type="checkbox" id="spoilerToggle" checked> Hide story trophies until earned</label>
+      <button class="action" id="exportBtn" type="button">Export</button>
+      <label class="action" for="importFile" style="display:inline-block">Import</label>
+      <input type="file" id="importFile" accept="application/json,.json" style="display:none">
+      <button class="action" id="resetBtn" type="button">Reset</button>
+    </div>
   </section>
 
-  <section id="roadmap" class="roadmap">
+  <section id="roadmap">
     <h2>Platinum roadmap</h2>
-    <p class="roadmap-intro">Six stages, in the order that wastes the least effort: one honest story run, one big cleanup, and a hard-mode victory lap at the end.</p>
+    <p class="intro">Six stages, in the order we would play them: one clean story pass, side stories next, then activities, collections, money — and the 100% finish that unlocks the platinum.</p>
 
     <article class="stage">
-      <h3>Stage 1 — Play the story once, eyes open</h3>
-      <p>Your first run is for the story trophies: both leads' mission chains, the heist setups and the finale. Two things deserve care while you play. When a branching mission offers an alternate path, take it once for Second Chances. And decide early how you feel about True Ending: it asks you to make every major choice the same way in one playthrough, so pick a philosophy at the first big decision and stick to it. Keep manual saves at chapter breaks — several later stages will thank you for them.</p>
+      <h3>Stage 1 — Story first, one clean pass</h3>
+      <p>Play the main story from Just Like Paradise and Paradise Lost through the chapter trophies to You Gotta Know When to Get Off, picking up the named mission trophies along the way — Trust (Breakfast Run), Break the Bank (The Cartel Heist), Family Matters, DWNFALL, Hi-Jacked and Snow Storm. Keep regular manual saves, especially around Actions Speak Louder: its description is only “Choices made (for better or worse)”, so a save before each big decision protects every branch.</p>
     </article>
 
     <article class="stage">
-      <h3>Stage 2 — Clean up the map</h3>
-      <p>With the story done and the whole map open, sweep up everything tied to places: the buried caches in the Keys, spray walls, postcards from every named area, animal photographs, hidden locations and the sunken wreck. Work district by district with the checklist filtered to Collectibles and World, and use your daily-driver car so the miles for Full Tank keep accumulating while you roam.</p>
+      <h3>Stage 2 — Strangers and side stories</h3>
+      <p>Clear the people stories next: the final-mission trophies for Andy (Road to Rehabilitation), Kenton (This Was No Boat Accident), Billy (The Lone Rider), Randy (Supply &amp; Demand) and Tyrone (Spin On This!). Work the Strangers &amp; Freaks strands as they appear — all 8 strands count toward that silver — and take Bret's request for Fair Game carefully: a unique animal sounds like a one-off encounter, so save before the hunt.</p>
     </article>
 
     <article class="stage">
-      <h3>Stage 3 — Races and activities</h3>
-      <p>Now the skill events: the Leonida Street Series and every street race, the Vice Beach drone races, the wave runner races, sunrise meditations, and gold on every Shooting Range challenge — community trackers list 42 challenges in the range's set, so settle in for a focused session or two. Bullseye's consecutive headshots are easiest to pick up here while your aim is warm.</p>
+      <h3>Stage 3 — Activities and medals</h3>
+      <p>Settle into the activity grind: gold medals in The Shootist's Shooting Range challenges (42 are tracked), wins in Top Fun drone races at every location and 20 different race wins for Earn Cash, Not Kudos. Round it out with One Last Thing's 50 Challenges, Baited My Tackle against Cal, Stick Fiddler in the arcade and a follow-through at the bowling alley for Let's Go Bowling, sampling every activity type once for Master of None as you go.</p>
     </article>
 
     <article class="stage">
-      <h3>Stage 4 — Money and property</h3>
-      <p>Turn your attention to the bank balance. Win the big poker hand, buy your first Keys property, and fill a garage collection with distinct vehicles. The ordering matters: hold cash until First Million pops before you start serious spending, then buy properties toward Property Mogul, and clear out one small store's clothing stock for Fashion Forward. Keep a separate save before the spending spree begins.</p>
+      <h3>Stage 4 — Collect and explore</h3>
+      <p>Turn the map into a checklist: 250 Cunning Stunts, 3 Collectible Card sets for Don't Touch My Deck, WAiNK It at 100 locations, Discover 100 vehicles for Whip It Good, every meditation spot for Positive Mental Attitude and On the Spot's 10 Scooter Bros registrations. Finish with The Goodtime State — explore all of Leonida until no fog is left.</p>
     </article>
 
     <article class="stage">
-      <h3>Stage 5 — The 100% push</h3>
-      <p>Everything left feeds one number. Finish the stranger side missions for Helping Hand, mop up random world events, discover the last hidden locations for No Stone Unturned, and follow the in-game completion screen for whatever remains. When the counter reaches 100%, Completionist is yours — and most of the list should already be ticked off.</p>
+      <h3>Stage 5 — Money, heat and heists</h3>
+      <p>Now the risky money: launder Marked Bills up to $250,000 for Dime on the Dollar, spend $100,000 across shops for Treat Yo Self, buy every garage for Little Boxes, rob 5 Bank Vaults for Maximum Withdrawal and chain Retail Therapy's 3 shop robberies with your partner. Several feats here are watch-outs — Hot Together's partner escape among them — so keep a separate save before each attempt.</p>
     </article>
 
     <article class="stage">
-      <h3>Stage 6 — The hard-mode victory lap</h3>
-      <p>The final stage is a fresh playthrough with the difficulty set high and left there: Completionist Prime asks for 100% without ever lowering it, Master of Leonida asks for 100% on the hardest difficulty, and Completionist Eternal simply asks for a second 100% run — so one well-planned victory lap can earn all three together. Never touch the difficulty setting mid-run, and keep a separate save as insurance.</p>
+      <h3>Stage 6 — The 100% finish</h3>
+      <p>Bring it home with A Long Road: 100% completion, using the in-game tracker to hunt whatever percentage remains. The moment the final trophy lands, Vice Got a Price! — the platinum — is awarded on top. Congratulations, Legend.</p>
     </article>
   </section>
-</main>
 
-<footer class="site-footer">
-  <p>Unofficial fan guide. Grand Theft Auto and GTA are trademarks of Rockstar Games / Take-Two Interactive. Trophy names and descriptions are the official PS5 trophy set; every guide here is written in our own words.</p>
-</footer>
+  <main>
+    <div id="list"></div>
+    <p id="emptyMsg">No trophies match the current filters.</p>
+  </main>
 
-<dialog id="guide-dialog">
-  <div class="dialog-head">
-    <h3 id="dialog-title"></h3>
-    <button type="button" id="dialog-close" aria-label="Close guide">×</button>
-  </div>
-  <p id="dialog-meta" class="dialog-meta"></p>
-  <p id="dialog-description" class="dialog-description"></p>
-  <p id="dialog-guide"></p>
-  <p class="sources">Sources — Trophy list: the official PS5 trophy set for Grand Theft Auto VI. Tracked counts and community routes: <a href="https://www.exophase.com/" target="_blank" rel="noopener">Exophase</a> and <a href="https://psnprofiles.com/" target="_blank" rel="noopener">PSNProfiles</a>.</p>
-</dialog>
+  <dialog id="guideDialog">
+    <h3 id="dlgName"></h3>
+    <div class="badges" id="dlgBadges"></div>
+    <p class="desc" id="dlgDesc"></p>
+    <p id="dlgGuide"></p>
+    <p class="sources">Trophy list: the official PS5 trophy set for Grand Theft Auto VI. Tracked counts and community routes: <a href="https://www.exophase.com/" target="_blank" rel="noopener">Exophase</a> and <a href="https://psnprofiles.com/" target="_blank" rel="noopener">PSNProfiles</a>.</p>
+    <button class="close-btn" id="dlgClose" type="button">Close</button>
+  </dialog>
 
+  <footer>
+    Unofficial fan guide. Grand Theft Auto and GTA are trademarks of Rockstar Games / Take-Two Interactive. Trophy names and descriptions are the official PS5 trophy set; every guide here is written in our own words.
+  </footer>
+
+</div>
 <script src="app.js"></script>
 </body>
 </html>
